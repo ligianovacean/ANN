@@ -13,14 +13,11 @@ Learning algorithm: Gradient descent
 
 The figure below depicts the class diagram of the ANN implementation. We have the following
 classes:
-MArkup: * ActivationFunction: abstract class to be inherited by different activation functions. In our
+	* ActivationFunction: abstract class to be inherited by different activation functions. In our
 case, as we perform multi-class classification, the activation of the last layer is Softmax.
 For the other layers we will use ReLU.
 	* ReLU: class that implements the forward and backward functions for the ReLU
 activation
-
-
-
 	* SoftMax: class that implements the forward and backward functions for the SoftMax
 activation
 A	* ANNLayer: holds the parameters (weights and bias) of each layer, along with the
@@ -85,7 +82,7 @@ precisely a Deep Feed Forward Network.
 Performed experiments include the variation of number of layers, layers sizes and learning rate.
 For each experiment, a k-fold cross-validation was used.
 Activation functions, regardless of the number or size or layers, are set according to:
-Markup: * Last layer: SoftMax activation; given that we perform multi-class classification, the last
+	* Last layer: SoftMax activation; given that we perform multi-class classification, the last
 layer should output probabilities for each class, where the sum of the probabilities is
 always 1.
 	* Other layers: ReLU activation
