@@ -3,12 +3,12 @@ Implementation from scratch of an artificial neural network. As a proof of conce
 
 
 ## ANN Module - Design Description
-Learning type: Supervised learning
-Task: To classify 10 monkey species from images.
-Performance measure: Percentage of correctly classified images
-Training experience: The “10 Monkey Species" dataset
-Target function: F: Image -> Per-class-probability
-Target function representation: ANN
+Learning type: Supervised learning  
+Task: To classify 10 monkey species from images  
+Performance measure: Percentage of correctly classified images  
+Training experience: The “10 Monkey Species" dataset  
+Target function: F: Image -> Per-class-probability  
+Target function representation: ANN  
 Learning algorithm: Gradient descent
 
 The figure below depicts the class diagram of the ANN implementation. We have the following
@@ -26,11 +26,12 @@ activation
 network. It does also implement functions for parameters initialization and update, cost
 computation and forward/backward pass through the entire network.
 
-Besides the ANN module, helper scripts are required for:
+![alt text](class_diagram.png)
 
-Markup: * Metrics: computation of various metrics (accuracy, precision, recall, F-score, confidence
+Besides the ANN module, helper scripts are required for:
+* Metrics: computation of various metrics (accuracy, precision, recall, F-score, confidence
 intervals)
-	* Plots: displaying loss plots, confusion matrices, metrics overviews
+* Plots: displaying loss plots, confusion matrices, metrics overviews
 
 
 ## Problem Analysis
