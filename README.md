@@ -3,26 +3,26 @@ Implementation from scratch of an artificial neural network. As a proof of conce
 
 
 ## ANN Module - Design Description
-Learning type: Supervised learning  
-Task: To classify 10 monkey species from images  
-Performance measure: Percentage of correctly classified images  
-Training experience: The “10 Monkey Species" dataset  
-Target function: F: Image -> Per-class-probability  
-Target function representation: ANN  
-Learning algorithm: Gradient descent
+**Learning type**: Supervised learning  
+**Task**: To classify 10 monkey species from images  
+**Performance measure**: Percentage of correctly classified images  
+**Training experience**: The “10 Monkey Species" dataset  
+**Target function**: F: Image -> Per-class-probability  
+**Target function** representation: ANN  
+**Learning algorithm**: Gradient descent
 
 The figure below depicts the class diagram of the ANN implementation. We have the following
 classes:
-* ActivationFunction: abstract class to be inherited by different activation functions. In our
+* **ActivationFunction**: abstract class to be inherited by different activation functions. In our
 case, as we perform multi-class classification, the activation of the last layer is Softmax.
 For the other layers we will use ReLU.
-* ReLU: class that implements the forward and backward functions for the ReLU
+* **ReLU**: class that implements the forward and backward functions for the ReLU
 activation
-* SoftMax: class that implements the forward and backward functions for the SoftMax
+* **SoftMax**: class that implements the forward and backward functions for the SoftMax
 activation
-A	* ANNLayer: holds the parameters (weights and bias) of each layer, along with the
+* **ANNLayer**: holds the parameters (weights and bias) of each layer, along with the
 activation
-* ANN: contains the fit and predict functions that will be used when training and testing a
+* **ANN**: contains the fit and predict functions that will be used when training and testing a
 network. It does also implement functions for parameters initialization and update, cost
 computation and forward/backward pass through the entire network.
 
