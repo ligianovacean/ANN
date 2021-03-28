@@ -125,6 +125,8 @@ The table below shows the setup for all the experiments performed:
 
 ![alt text](experiments.png)
 
+### Analysis of Experimental Results
+
 **An extensive list of the obtained results is presented in ExperimentalResults.pdf.** 
 
 Two experiments we performed, the main difference between them being network architecture.
