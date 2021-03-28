@@ -15,4 +15,7 @@ task difficult.
 
 ![alt text](dataset_sample.png)
 
-
+The table below illustrates the number of images per class. We notice that the dataset is balanced.
+| Class 0 | Class 1| Class 2 | C;ass 3 | Class 4 | Class 5 | Class 6 | Class 7 | Class 8 | Class 9|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 131 | 139 | 137 | 152 | 131 | 141 | 132 | 142 | 133 | 132 |
