@@ -63,19 +63,21 @@ displayed below:
 
 For in-class correlations, we notice higher correlations for classes 0, 1, 2, 6, 7 and 9. On the
 other side, for classes 3 and 8 the correlation has 2-3 times smaller values.
+
 We notice that some of the inter-class correlations are in the same range as in-class
 correlations. Such strong correlations between distinct classes might have a negative impact on
 performance. These strong correlations apply for the following pairs (order matters – the first
 element in the tuple is the problematic one, with inter-class correlations close to in-class
 correlation):
-(0, 9), (1, 7), (4, 1), (4, 2), (4, 6), (4, 7), (5, 2), (5, 7), (7, 1), (8, 1), (8, 4), (8, 6), (8, 7), (9, 1)
+(0, 9), (1, 7), (4, 1), (4, 2), (4, 6), (4, 7), (5, 2), (5, 7), (7, 1), (8, 1), (8, 4), (8, 6), (8, 7), (9, 1).
+
 None of the correlations is very strong in absolute value (i.e., close to 1 or –1). However, by
 comparing correlation values to each other, we notice that some classes might have similar
 distributions to each other. Also, some of the classes have reduced in-class variation, hence
 stronger in-class correlation.
 
 
-## Experimental results
+## Experimental Results
 The current project aims to classify images from the “10 Monkey Species” dataset, in 10
 classes corresponding to their species. Consequently, the task is a multi-class image
 classification problem. The problem is solved using an Artificial Neural Network, more
@@ -91,5 +93,71 @@ To evaluate performance, accuracy is the central metric, but it is associated wi
 matrices, precision, recall and f-score for a better understanding of the results. Furthermore, to
 have a statistical analysis of the accuracy measurements across the cross-validation iterations, we
 compute 95% confidence interval.
+
+### Experimental Setup
+Experiments focus on 2 types of variations in network architecture: width and depth. For each
+architecture, experiments include variations in:
+* Learning rate
+* Number of iterations: early stopping is also implemented, with parametrized patience
+
+For all the experiments, we use  **Batch Gradient Descent** (i.e., batch size = dataset size).
+
+For k-fold cross validation, k is set to 8. Given the fact that we do not have lots of images per
+class, for k=10 variations from fold to folds were quite large. For k = 5, the number of train
+images was too small. Thus, k was to set to 8 for all the experiments.
+
+The following metrics are computed to evaluate the network performance:
+* **Accuracy**: Per cross-validation iteration and average
+* **Confusion matrix**: Per cross-validation iteration and average•
+* **Precision**: Per cross-validation iteration and average
+* **Recall**: Per cross-validation iteration and average
+* **F-Score**: Per cross-validation iteration and average
+* **95% confidence interval** for the accuracy of the k cross-validation iterations
+
+The following formulas were used for the metrics:
+* Accuracy = (TP + TN) / Total
+* Confusion matrix: rows are true classes, columns are predictions
+* Precision = TP / (TP + FP), in a one vs. all manner
+* Recall = TP / (TP + FN), in a one vs. all manner
+* 8 folds 95% confidence interval: 1.96 * std / sqrt(sample_size)
+
+The table below shows the setup for all the experiments performed:
+
+![alt text](experiments.png)
+
+**An extensive list of the obtained results is presented in ExperimentalResults.pdf.** 
+
+Two experiments we performed, the main difference between them being network architecture.
+In Experiment 2, both the network width and depth were increased. Despite increasing the
+network complexity, the performance did not improve. I hypothesize that the biggest challenge
+for the network is the lack of translation or projection invariance, which cannot be compensated
+for by adding more layers or increasing their sizes.
+
+Then, we will take a closer look at the results obtained for experiment 1. The average accuracy is
+44.3%, with a 95% confidence interval of 41.4-47.2%. The variation between cross-validation
+iterations is around 4%, which might be easily explained by the reduced number of images in the
+dataset.
+
+One important remark is the close connection between the confusion matrixes and the correlation
+matrix. In the problem analysis section, a correlation matrix is presented. We computed the
+correlation between all the images in class i and all the images in class j, where i = [1, 10], j = [1,
+10]. To obtain a single value for the correlation, we average the correlation between all pairs of
+images. 
+
+By evaluating the correlation and confusion matrices, we notice that classes with smaller in-
+class correlation are often wrongly predicted. Furthermore, these classes are often confused
+with classes to which they are strongly correlated. This close connection between correlation
+and confusion matrices shows that, by nature, ANNs struggle to find features with strong
+semantics in images. This is a consequence of the large input dimensionality, along with the fact
+that fully connected layers are not position invariant nor do they perform convolutional
+operations.
+
+The other computed metrics (precision, recall and F-score) reflect the fact that a significant
+decrease in accuracy comes from a reduced set of classes (e.g., classes 4 and 8).
+
+Based on all these observations, further experiments might include:
+* Data augmentation: the number of images in the dataset might be increased by
+augmentation via rotations, translations, projections, brightness adjustments
+* Increasing the input image resolution
 
 
